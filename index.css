@@ -1,0 +1,12 @@
+table {
+    background-color: #eee;
+    border-radius: 10px;
+}
+
+label {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    padding-right: 10px;
+    padding-top: 10px;
+}​
