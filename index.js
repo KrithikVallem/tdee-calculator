@@ -1,4 +1,4 @@
-
+import * as calculate from "./formulas.js";
 
 function validateFormInputs(inputs) {
     inputs.age = parseInt(document.querySelector("#age").value);
@@ -64,14 +64,15 @@ function formSubmit() {
         activityLevel: "S",
     };
 
+
     if (!validateFormInputs(inputs)) {
         return;
     }
 
-    
-    alert(inputs.activityLevel);
-    alert(inputs.weightUnit);
-    alert(inputs.heightUnit);
+    calculate.TDEE();
+    calculate.BMI();
+    calculate.IdealBodyWeight();
+    calculate.MaximumMuscularPotential();
 }
 
 document.querySelector("#submitBtn").addEventListener("click", formSubmit);
