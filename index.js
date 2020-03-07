@@ -4,6 +4,7 @@ function validateFormInputs(inputs) {
     inputs.age = parseInt(document.querySelector("#age").value);
     inputs.weight = parseInt(document.querySelector("#weight").value);
     inputs.height = parseInt(document.querySelector("#height").value);
+
     inputs.bodyFatPercent = parseInt(document.querySelector("#bodyFatPercent").value);
     inputs.bodyFatEntered = false;
 
@@ -32,7 +33,16 @@ function validateFormInputs(inputs) {
     }
 
 
-    
+    // getting values of dropdowns
+    const gender = document.querySelector("#gender");
+    const weightUnit = document.querySelector("#weightUnit");
+    const heightUnit = document.querySelector("#heightUnit");
+    const activityLevel = document.querySelector("#activityLevel");
+
+    inputs.gender = gender.options[gender.selectedIndex].value;
+    inputs.weightUnit = weightUnit.options[weightUnit.selectedIndex].value;
+    inputs.heightUnit = heightUnit.options[heightUnit.selectedIndex].value;
+    inputs.activityLevel = activityLevel.options[activityLevel.selectedIndex].value;
 
     return true;
 }
@@ -40,8 +50,12 @@ function validateFormInputs(inputs) {
 function formSubmit() {
     const inputs = {
         age: -1,
+
         weight: -1,
+        weightUnit: "LBS",
+
         height: -1,
+        heightUnit: "IN",
 
         bodyFatEntered: false,
         bodyFatPercent: -1,
@@ -55,6 +69,9 @@ function formSubmit() {
     }
 
     
+    alert(inputs.activityLevel);
+    alert(inputs.weightUnit);
+    alert(inputs.heightUnit);
 }
 
 document.querySelector("#submitBtn").addEventListener("click", formSubmit);
