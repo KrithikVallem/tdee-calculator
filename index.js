@@ -63,47 +63,31 @@ function validateFormInputs(inputs) {
 }
 
 
+
 function calculateTDEEnoBF(gender, age, weight, weightUnit, height, heightUnit, activityMultiplier) {
     // Mifflin St. Jeor
     // Mifflin = (10.m + 6.25h - 5.0a) + s
     // m is mass in kg, h is height in cm, a is age in years, s is +5 for males and -151 for females
-    alert("1 no");
     
-    /*if (gender === "M") {
-        const safeMinCalories = MIN_CAL_MALE;
-        const genderModifier = MALE_CAL_MODIFIER;
-    }
-    else {
-        const safeMinCalories = MIN_CAL_FEMALE;
-        const genderModifier = FEMALE_CAL_MODIFIER;
-    }*/
-
-    alert("2 no");
+    const safeMinCalories = (gender === "M") ? MIN_CAL_MALE : MIN_CAL_FEMALE;
+    const genderModifier = (gender === "M") ? MALE_CAL_MODIFIER : FEMALE_CAL_MODIFIER;
 
     if (weightUnit === "LBS") {
         weight *= KILOGRAMS_PER_POUND;
     }
 
-    alert("3 no");
-
     if (heightUnit === "IN") {
         height *= CENTIMETERS_PER_INCH;
     }
 
-    alert("4 no");
-
-    //const BMR = (10 * weight) + (6.25 * height) - (5.0 * age) + genderModifier;
-
-    alert("5 no");
+    const BMR = (10 * weight) + (6.25 * height) - (5.0 * age) + genderModifier;
 
     // if tdee is under safe min calories, then set tdee to safe min calories
-    //const TDEE = Math.max(safeMinCalories, Math.round(BMR * activityMultiplier));
-
-    alert("6 no");
-    TDEE = 2000;
+    const TDEE = Math.max(safeMinCalories, Math.round(BMR * activityMultiplier));
 
     return TDEE;
 }
+
 
 
 function calculateTDEEwithBF(gender, weight, weightUnit, bodyFatPercent, activityMultiplier) {
@@ -111,7 +95,7 @@ function calculateTDEEwithBF(gender, weight, weightUnit, bodyFatPercent, activit
     // Katch = 370 + (21.6 * LBM)
     // where LBM is lean body mass 
 
-    safeMinCalories = (gender === "M") ? MIN_CAL_MALE : MIN_CAL_FEMALE;
+    const safeMinCalories = (gender === "M") ? MIN_CAL_MALE : MIN_CAL_FEMALE;
 
     if (weightUnit === "LBS") {
         weight *= KILOGRAMS_PER_POUND;
@@ -119,10 +103,12 @@ function calculateTDEEwithBF(gender, weight, weightUnit, bodyFatPercent, activit
 
     const LBM = (100 - bodyFatPercent) * 0.01 * weight;
     const BMR = (21.6 * LBM) + 370;
+
     const TDEE = Math.max(safeMinCalories, Math.round(BMR * activityMultiplier));
 
     return TDEE;
 }
+
 
 
 function calculateBMI(weight, weightUnit, height, heightUnit) {
@@ -198,7 +184,7 @@ function formSubmit() {
         return;
     }
     else {
-        const TDEE = (inputs.bodyFatEntered) ? calculateTDEEwithBF(inputs.gender, inputs.weight, inputs.weightUnit, inputs.bodyFatPercent, inputs.activityLevel) : calculateTDEEnoBF(inputs.gender, inputs.age, inputs.weight, inputs.weightUnit, inputs.height, inputs.heightUnit, input.activityLevel);
+        const TDEE = (inputs.bodyFatEntered) ? calculateTDEEwithBF(inputs.gender, inputs.weight, inputs.weightUnit, inputs.bodyFatPercent, inputs.activityLevel) : calculateTDEEnoBF(inputs.gender, inputs.age, inputs.weight, inputs.weightUnit, inputs.height, inputs.heightUnit, inputs.activityLevel);
 
         const BMI = calculateBMI(inputs.weight, inputs.weightUnit, inputs.height, inputs.heightUnit);
         

@@ -1,6 +1,14 @@
 body, select, button {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 15px;
     color: #003F2E;
+}
+
+button {
+    margin-bottom: 10px;
+    background-color: #003F2E;
+    color: #E6E6DE;
+    border-radius: 5px;
 }
 
 body {
@@ -10,7 +18,7 @@ body {
 #inputsContainer, #resultsContainer, #infoContainer {
     background-color: #E6E6DE;
     color: #003F2E;
-    border-radius: 10px;
+    border-radius: 5px;
     display: table;
     margin-left:auto;
     margin-right:auto;
