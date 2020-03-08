@@ -1,7 +1,30 @@
-table {
-    background-color: #eee;
-    border-radius: 10px;
+body, select, button {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: #003F2E;
 }
+
+body {
+    background-color: #003F2E;
+}
+
+#inputsContainer, #resultsContainer, #infoContainer {
+    background-color: #E6E6DE;
+    color: #003F2E;
+    border-radius: 10px;
+    display: table;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom: 10px;
+}
+
+#resultsContainer, #infoContainer {
+    text-align: center;
+    line-height: 150%;
+    padding: 5px 0px 5px 0px;
+
+    visibility: collapse;
+}
+
 
 label {
     display: inline-block;

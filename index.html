@@ -3,10 +3,11 @@
     <head>
         <link rel="stylesheet" href="index.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TDEE Calculator</title>
     </head>
 
     <body>
-        <div>
+        <div id="inputsContainer">
             <table>
                 <tr style="text-align: center;">
                     <td>
@@ -24,11 +25,11 @@
             
                         <br/>
                         <label for="age">Age: </label>
-                        <input type="number" id="age" min="0" required>
+                        <input type="number" id="age" min="0" max="999" required>
             
                         <br/>
                         <label for="weight">Weight: </label>
-                        <input type="number" id="weight" min="0" required>
+                        <input type="number" id="weight" min="0" max="999" required>
                         <select id="weightUnit">
                             <option value="LBS">lbs</option>
                             <option value="KG">kg</option>
@@ -36,7 +37,7 @@
             
                         <br/>
                         <label for="height">Height: </label>
-                        <input type="number" id="height" min="0" required>
+                        <input type="number" id="height" min="0" max="999" required>
                         <select id="heightUnit">
                             <option value="IN">in</option>
                             <option value="CM">cm</option>
@@ -45,16 +46,16 @@
                         <br/>
                         <label for="activityLevel">Activity Level: </label>
                         <select id="activityLevel">
-                            <option value="S">Sedentary (Office Job)</option>
-                            <option value="L">Light Exercise (1-2 days/week)</option>
-                            <option value="M">Medium Exercise (3-5 days/week)</option>
-                            <option value="H">Heavy Exercise (6-7 days/week)</option>
-                            <option value="A">Athlete (2x per day)</option>
+                            <option value="1.2">Sedentary (Office Job)</option>
+                            <option value="1.375">Light Exercise (1-2 days/week)</option>
+                            <option value="1.55">Medium Exercise (3-5 days/week)</option>
+                            <option value="1.725">Heavy Exercise (6-7 days/week)</option>
+                            <option value="1.9">Athlete (2x per day)</option>
                         </select>
             
                         <br/>
                         <label for="bf">Body Fat % (Optional): </label>
-                        <input type="number" id="bodyFatPercent"  min="0" max="100">
+                        <input type="number" id="bodyFatPercent"  min="0" max="100">%
                     </td>
                 </tr>
 
@@ -68,6 +69,10 @@
                 </tr>
             </table>
         </div>
+
+        <div id="infoContainer"></div>
+
+        <div id="resultsContainer"></div>
 
         <script src="index.js"></script>
     </body>
