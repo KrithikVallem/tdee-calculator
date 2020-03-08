@@ -146,16 +146,17 @@ function printOutput(TDEE, BMI, gender) {
         BMI_RANGE = "Obese";
     }
 
-    document.querySelector("#infoContainer").innerText = 
-        `Your TDEE is ${TDEE} calories per day.
-        Your BMI is ${BMI}, so you are ${BMI_RANGE}.`
+    document.querySelector("#infoContainer").innerHTML = 
+        `Your TDEE is <strong>${TDEE}</strong> calories per day.
+        <br/>
+        Your BMI is <strong>${BMI}</strong>, which is <strong>${BMI_RANGE}</strong>.`;
 
-    document.querySelector("#resultsContainer").innerText = 
-        `To lose 2 lbs/week, eat ${Math.max(TDEE - 1000, safeMinCalories)} calories per day.
-        To lose 1 lbs/week, eat ${Math.max(TDEE - 500, safeMinCalories)} calories per day.
-        To maintain weight, eat ${Math.max(TDEE, safeMinCalories)} calories per day.
-        To gain 1 lbs/week, eat ${Math.max(TDEE + 500, safeMinCalories)} calories per day.
-        To lose 2 lbs/week, eat ${Math.max(TDEE + 1000, safeMinCalories)} calories per day.`;
+    document.querySelector("#resultsContainer").innerHTML = 
+        `To lose 2 lbs/week, eat <strong>${Math.max(TDEE - 1000, safeMinCalories)}</strong> calories per day.<br/>
+        To lose 1 lbs/week, eat <strong>${Math.max(TDEE - 500, safeMinCalories)}</strong> calories per day.<br/>
+        To maintain weight, eat <strong>${Math.max(TDEE, safeMinCalories)}</strong> calories per day.<br/>
+        To gain 1 lbs/week, eat <strong>${Math.max(TDEE + 500, safeMinCalories)}</strong> calories per day.<br/>
+        To lose 2 lbs/week, eat <strong>${Math.max(TDEE + 1000, safeMinCalories)}</strong> calories per day.`;
 
     document.querySelector("#resultsContainer").style.visibility = "visible";
     document.querySelector("#infoContainer").style.visibility = "visible";
