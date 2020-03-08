@@ -104,7 +104,7 @@ function calculateTDEEwithBF(gender, weight, weightUnit, bodyFatPercent, activit
     const LBM = (100 - bodyFatPercent) * 0.01 * weight;
     const BMR = (21.6 * LBM) + 370;
 
-    const TDEE = Math.max(safeMinCalories, Math.round(BMR * activityMultiplier));
+    const TDEE = Math.round(BMR * activityMultiplier);
 
     return TDEE;
 }
@@ -134,30 +134,34 @@ function printOutput(TDEE, BMI, gender) {
     BMI = parseFloat(BMI);
 
     if (BMI < 18.5) {
-        BMI_RANGE = "Underweight";
+        BMI_RANGE = "underweight";
     }
     else if (BMI < 25) {
-        BMI_RANGE = "Healthy";
+        BMI_RANGE = "healthy";
     }
     else if (BMI < 30) {
-        BMI_RANGE = "Overweight";
+        BMI_RANGE = "overweight";
     }
     else {
-        BMI_RANGE = "Obese";
+        BMI_RANGE = "obese";
     }
 
-    document.querySelector("#infoContainer").innerHTML = 
-        `Your TDEE is <strong>${TDEE}</strong> calories per day.
+    let infoHTML = 
+        `Your TDEE is <strong>${Math.max(TDEE, safeMinCalories)}</strong> calories per day.
         <br/>
         Your BMI is <strong>${BMI}</strong>, which is <strong>${BMI_RANGE}</strong>.`;
 
-    document.querySelector("#resultsContainer").innerHTML = 
+    let resultsHTML = 
         `To lose 2 lbs/week, eat <strong>${Math.max(TDEE - 1000, safeMinCalories)}</strong> calories per day.<br/>
         To lose 1 lbs/week, eat <strong>${Math.max(TDEE - 500, safeMinCalories)}</strong> calories per day.<br/>
         To maintain weight, eat <strong>${Math.max(TDEE, safeMinCalories)}</strong> calories per day.<br/>
         To gain 1 lbs/week, eat <strong>${Math.max(TDEE + 500, safeMinCalories)}</strong> calories per day.<br/>
         To lose 2 lbs/week, eat <strong>${Math.max(TDEE + 1000, safeMinCalories)}</strong> calories per day.`;
-
+    
+    const safeMinCaloriesRegex = new RegExp(safeMinCalories, "g");
+    document.querySelector("#resultsContainer").innerHTML = resultsHTML.replace(safeMinCaloriesRegex, `<abbr title='${((gender === "M") ? "Men" : "Women")} are not advised to consume less than ${safeMinCalories} calories per day.'>${safeMinCalories}</abbr>`);
+    document.querySelector("#infoContainer").innerHTML = infoHTML.replace(safeMinCaloriesRegex, `<abbr title='${((gender === "M") ? "Men" : "Women")} are not advised to consume less than ${safeMinCalories} calories per day.'>${safeMinCalories}</abbr>`);
+    
     document.querySelector("#resultsContainer").style.visibility = "visible";
     document.querySelector("#infoContainer").style.visibility = "visible";
 }
